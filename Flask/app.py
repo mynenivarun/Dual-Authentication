@@ -5,7 +5,7 @@ from hashlib import sha512
 import os
 #Step – 2 (configuring your application)
 app = Flask(__name__)
-app.secret_key = 'VarunMyneni'     #you can set any secret key but remember it should be secret
+app.secret_key = 'Varun-Myneni'     #you can set any secret key but remember it should be secret
 #step – 3 (creating a dictionary to store information about users)
 user = {"username": "admin", "password": "admin" }
 user1 = {"username": "varun", "password": "varun"}

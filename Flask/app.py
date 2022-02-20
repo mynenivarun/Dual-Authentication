@@ -26,11 +26,20 @@ def login():
             whash = sha512(wc .encode()).hexdigest()
             if(whash==uhash):
                 session['user'] = username
-                return redirect('/dashboard'),'<br><br><h1>User Authentication Successful<h1><h2>Authentication Done with SHA-512</h2>'
+                return redirect('/auth')
             else:
-                return redirect('/login'),'<h1>!!User Authentication Failed!!</h1>'
+                return redirect('/auth404')
         return '<h4 align="right"><a href="/">Index</a></h4><h1 align="center">Wrong username or password</h1>'    #if the username or password does not matches 
     return render_template("app.html")
+
+@app.route('/auth')
+def auth():
+    return '<!DOCTYPE html><html><head><title>Successfull Auth</title></head><body><br><br><br><br><h1 align="center"><b><font color="green">User Authentication Successful</font></b><h1><h2 align="center"><b>Authentication Done with SHA-512</b></h2><br><br><br><h1 align="center"><b>Redirecting..</b></h1><br><p align="center">you should be redirected automatically to target URL:<a href="/dashboard">/dashboard</a>. if not click the link</p></body></html>'
+
+@app.route('/auth404')
+def auth404():
+    return '<!DOCTYPE html><html><head><title>Un-Successfull Auth</title></head><body><br><br><br><br><h1 align="center"><b><font color="red">!!User Authentication UN-Successful!!</font></b><h1><h2 align="center"><b>Authentication Done with SHA-512</b></h2><br><br><br><h1 align="center"><b>Redirecting..</b></h1><p align="center">you should be redirected automatically to target URL:<a href="/login">/login</a>. if not click the link</p></body></html>'
+
 #Step -5(creating route for dashboard and logout)
 @app.route('/dashboard')
 def dashboard():
